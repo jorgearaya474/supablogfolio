@@ -3,7 +3,7 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
-import { createClient } from '@/utils/supabase/server';
+import { createClient } from '@/src/utils/supabase/server';
 
 
 export async function login(formData: FormData) {
@@ -22,8 +22,8 @@ export async function login(formData: FormData) {
     redirect('/error')
   }
 
-  revalidatePath('/', 'layout')
-  redirect('/account')
+  //revalidatePath('/', 'layout')
+  redirect('/dashborad')
 }
 
 export async function signup(formData: FormData) {
@@ -42,6 +42,6 @@ export async function signup(formData: FormData) {
     redirect('/error')
   }
 
-  revalidatePath('/', 'layout')
+  //revalidatePath('/', 'layout')
   redirect('/account')
 }
