@@ -1,12 +1,11 @@
-import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
 
 const RoutesList = [
   ['Home', '/'],
-  ['About', '/#section_about'],
-  ['Works', '/works'],
-  ['Contact', '/#section_contact'],
+  ['About', '/about'],
+  ['Projects', '/projects'],
+  ['Contact', '/contact'],
   ['Blog', '/blog'],
 ];
 
@@ -22,7 +21,7 @@ export default function Header() {
             <Link href='/' className='flex items-center focus:outline-none'>
               <Image
                 src='/logoipsum-288.svg'
-                alt='Jorge Araya Logo'
+                alt='Site Logo'
                 width={167}
                 height={20}
                 className=''
