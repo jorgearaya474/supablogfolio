@@ -11,9 +11,7 @@ export default function Projects() {
   const [error, setError] = useState<string | null>(null);
 
   const getProjects = async () => {
-    const { data, error } = await supabaseClient
-      .from<Project>('projects')
-      .select('*');
+    const { data, error } = await supabaseClient.from('projects').select('*');
 
     console.log(data);
 
@@ -45,9 +43,7 @@ export default function Projects() {
       <ul>
         {projects.map((project) => (
           <li key={project.id}>
-            <Link href={`/projects/${project.id}`}>
-              <a>{project.title}</a>
-            </Link>
+            <a>{project.title}</a>
           </li>
         ))}
       </ul>
