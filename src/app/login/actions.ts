@@ -2,46 +2,29 @@
 
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
+import { createClient } from '@/utils/supabase/server';
+import { LoginParams } from '@/types';
 
-import { createClient } from '@/src/utils/supabase/server';
 
+export async function login({ email, password }: LoginParams) {
+  const supabase = createClient();
 
-export async function login(formData: FormData) {
-  const supabase = createClient()
+  try {
+    const { error } = await (await supabase).auth.signInWithPassword({
+      email, password
+    })
 
-  // type-casting here for convenience
-  // in practice, you should validate your inputs
-  const data = {
-    email: formData.get('email') as string,
-    password: formData.get('password') as string,
+    if (error) {
+      console.error('Error logging in:', error.message);
+      throw new Error('Invalid login credentials');
+    }
+
+    console.log('User logged in successfully');
+    revalidatePath('/', 'layout')
+    redirect('/dashborad')
+
+  } catch (error) {
+    console.error('Login failed: ', error);
+    throw error;
   }
-
-  const { error } = await supabase.auth.signInWithPassword(data)
-
-  if (error) {
-    redirect('/error')
-  }
-
-  //revalidatePath('/', 'layout')
-  redirect('/dashborad')
-}
-
-export async function signup(formData: FormData) {
-  const supabase = createClient()
-
-  // type-casting here for convenience
-  // in practice, you should validate your inputs
-  const data = {
-    email: formData.get('email') as string,
-    password: formData.get('password') as string,
-  }
-
-  const { error } = await supabase.auth.signUp(data)
-
-  if (error) {
-    redirect('/error')
-  }
-
-  //revalidatePath('/', 'layout')
-  redirect('/account')
 }
