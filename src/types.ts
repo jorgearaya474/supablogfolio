@@ -1,4 +1,4 @@
-export interface Project {
+interface Project {
   id: number;
   title: string;
   description: string;
@@ -6,3 +6,9 @@ export interface Project {
   project_url: string;
 }
 
+interface LoginParams {
+  email: string;
+  password: string;
+}
+
+export type { Project, LoginParams }
