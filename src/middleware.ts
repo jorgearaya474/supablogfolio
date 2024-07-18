@@ -1,6 +1,6 @@
 // src/middleware.ts
 import { NextResponse, NextRequest } from 'next/server';
-import { updateSession } from '@/src/utils/supabase/middleware';
+import { updateSession } from '@/utils/supabase/middleware';
 import { createServerClient } from '@supabase/ssr';
 console.log('testing');
 export async function middleware(request: NextRequest) {
