@@ -19,7 +19,7 @@ export default function LoginPage() {
   };
   return (
     <div className='container'>
-      <div className='flex'>
+      <div className='flex h-svh items-center'>
         <div className='w-96 mx-auto'>
           <form
             className='bg-white shadow-md rounded p-8'
