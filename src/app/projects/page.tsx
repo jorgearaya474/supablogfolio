@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { supabaseClient } from '@/utils/supabase/client'; // Importa el cliente correcto
 import { Project } from '@/types';
 import Link from 'next/link';
+import ProjectBox from '@/components/projects/ProjectBox';
 
 export default function Projects() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -38,15 +39,15 @@ export default function Projects() {
   }
 
   return (
-    <div>
-      <h1>Projects</h1>
-      <ul>
-        {projects.map((project) => (
-          <li key={project.id}>
-            <a>{project.title}</a>
-          </li>
+    <div className='container h-svh'>
+      <div className='py-8'>
+        <h1 className='text-4xl font-black uppercase'>Projects</h1>
+      </div>
+      <div className='grid grid-cols-3 gap-6'>
+        {projects.map((item) => (
+          <ProjectBox key={item.id} project={item} />
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
